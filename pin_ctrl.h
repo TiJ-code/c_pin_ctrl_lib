@@ -24,6 +24,7 @@ typedef enum pin_ctrl_mode {
 typedef struct pin_ctrl {
 	int pi_handle;
 	void (*log)(char *fmt, ...);
+	bool low_active;
 } PinCtrl_t;
 
 PinCtrlResult_t pc_set_mode(PinCtrl_t *ctrl, int pin, PinCtrlMode_t mode);
@@ -33,7 +34,7 @@ PinCtrlResult_t pc_trigger_pin(PinCtrl_t *ctrl, int pin, int durationMillis, Pin
 
 const char *pc_pin_to_str(PinCtrl_t *ctrl, int pin);
 
-PinCtrlResult_t pc_init(void (*log)(char *fmt, ...), PinCtrl_t *out);
+PinCtrlResult_t pc_init(void (*log)(char *fmt, ...), bool low_active, PinCtrl_t *out);
 void pc_free(PinCtrl_t *ctrl);
 
 #endif

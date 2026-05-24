@@ -16,10 +16,11 @@ static inline void loggerf(char *fmt, ...) {
 
 int main(void) {
 	PinCtrl_t ctrl = {
-		.pi_handle = -1,
-		.log       = NULL	
+		.pi_handle  = -1,
+		.log        = NULL	
+		.low_active = false
 	};
-	if (pc_init(&loggerf, &ctrl) == PC_ERROR) {
+	if (pc_init(&loggerf, true, &ctrl) == PC_ERROR) {
 		printf("Error: pc_init\n");
 		return 1;
 	}
